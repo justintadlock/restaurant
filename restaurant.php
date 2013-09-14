@@ -8,11 +8,12 @@
  * Author URI: http://justintadlock.com
  */
 
-final class Restaurant_Loader {
+final class RP_Restaurant {
 
-	public $restaurant_base = 'menu';
-
-	public $is_menu_home  = false;
+	/**
+	 * @since 0.1.0
+	 */
+	private static $instance;
 
 	/**
 	 * @since 0.1.0
@@ -32,8 +33,6 @@ final class Restaurant_Loader {
 		add_action( 'plugins_loaded', array( $this, 'admin' ), 4 );
 
 		add_action( 'init', array( $this, 'rewrite' ) );
-
-		add_action( 'parse_request', array( $this, 'parse_request' ) );
 
 		/* Register activation hook. */
 		register_activation_hook( __FILE__, array( $this, 'activation' ) );
@@ -65,6 +64,7 @@ final class Restaurant_Loader {
 	function includes() {
 
 		require_once( RESTAURANT_DIR . 'inc/core.php'       );
+		require_once( RESTAURANT_DIR . 'inc/default-filters.php' );
 		require_once( RESTAURANT_DIR . 'inc/post-types.php' );
 		require_once( RESTAURANT_DIR . 'inc/taxonomies.php' );
 		require_once( RESTAURANT_DIR . 'inc/template.php'   );
@@ -76,8 +76,6 @@ final class Restaurant_Loader {
 	 * @since 0.1.0
 	 */
 	function i18n() {
-
-		/* Load the translation of the plugin. */
 		load_plugin_textdomain( 'restaurant', false, 'restaurant/languages' );
 	}
 
@@ -90,7 +88,6 @@ final class Restaurant_Loader {
 
 		if ( is_admin() ) {
 			require_once( RESTAURANT_DIR . 'admin/admin.php' );
-	//		require_once( RESTAURANT_ADMIN . 'settings.php' );
 		}
 	}
 
@@ -98,16 +95,7 @@ final class Restaurant_Loader {
 	 * @since  0.1.0
 	 */
 	public function rewrite() {
-		add_rewrite_rule( '^' . $this->restaurant_base . '$', 'index.php?' . $this->restaurant_base, 'top' );
-	}
-
-	/**
-	 * @since  0.1.0
-	 */
-	public function parse_request( $wp ) {
-
-		if ( isset( $wp->query_vars[ $this->restaurant_base ] ) )
-			$this->is_menu_home = true;
+		add_rewrite_rule( '^' . rp_restaurant_menu_base() . '$', 'index.php?' . rp_restaurant_menu_base(), 'top' );
 	}
 
 	/**
@@ -115,20 +103,27 @@ final class Restaurant_Loader {
 	 */
 	function activation() {
 
-		/* Get the administrator and add required capabilities if it exists. */
 		$role = get_role( 'administrator' );
 
 		if ( !empty( $role ) ) {
-
-			/* Add capabilities for the menu item post type. */
-			$role->add_cap( 'manage_restaurant' );
+			$role->add_cap( 'manage_restaurant'       );
 			$role->add_cap( 'create_restaurant_items' );
-			$role->add_cap( 'edit_restaurant_items' );
+			$role->add_cap( 'edit_restaurant_items'   );
 		}
+	}
+
+	/**
+	 * @since 0.1.0
+	 */
+	public static function get_instance() {
+
+		if ( !self::$instance )
+			self::$instance = new self;
+
+		return self::$instance;
 	}
 }
 
-global $restaurant;
-$restaurant = new Restaurant_Loader();
+RP_Restaurant::get_instance();
 
 ?>
