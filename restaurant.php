@@ -32,6 +32,7 @@ final class RP_Restaurant {
 		/* Load the admin files. */
 		add_action( 'plugins_loaded', array( $this, 'admin' ), 4 );
 
+		/* Add custom rewrite rules. */
 		add_action( 'init', array( $this, 'rewrite' ) );
 
 		/* Register activation hook. */
@@ -86,9 +87,8 @@ final class RP_Restaurant {
 	 */
 	function admin() {
 
-		if ( is_admin() ) {
+		if ( is_admin() )
 			require_once( RESTAURANT_DIR . 'admin/admin.php' );
-		}
 	}
 
 	/**

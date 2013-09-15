@@ -31,7 +31,7 @@ function restaurant_register_taxonomies() {
 
 		/* The rewrite handles the URL structure. */
 		'rewrite' => array(
-			'slug'         => 'menu/tags',
+			'slug'         => rp_restaurant_menu_base() . '/tags',
 			'with_front'   => false,
 			'hierarchical' => false,
 			'ep_mask'      => EP_NONE
@@ -41,7 +41,7 @@ function restaurant_register_taxonomies() {
 		'labels' => array(
 			'name'                       => __( 'Tags',                           'restaurant' ),
 			'singular_name'              => __( 'Tag',                            'restaurant' ),
-			'menu_name'                  => __( 'Tags',                           'restaurant' ),
+			'menu_name'                  => __( 'Restaurant Tags',                      'restaurant' ),
 			'name_admin_bar'             => __( 'Tags',                           'restaurant' ),
 			'search_items'               => __( 'Search Tags',                    'restaurant' ),
 			'popular_items'              => __( 'Popular Tags',                   'restaurant' ),

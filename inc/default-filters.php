@@ -6,9 +6,14 @@ add_action( 'init', 'rp_add_image_sizes' );
 
 add_filter( 'template_include', 'rp_template_include', 15 );
 
-add_filter( 'preprocess_comment', 'rp_preprocess_comment' );
+add_filter( 'wp_title', 'rp_wp_title' );
 
-add_filter( 'get_avatar_comment_types', 'rp_avatar_comment_types' );
+add_filter( 'body_class', 'rp_body_class' );
+
+add_action( 'pre_get_posts', 'rp_pre_get_posts' );
+
+add_filter( 'posts_request', 'rp_posts_request', 10, 2 );
+
 
 
 

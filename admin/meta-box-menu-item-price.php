@@ -72,7 +72,7 @@ final class RP_Post_Meta_Boxes {
 			return;
 
 		$meta = array(
-			'_restaurant_item_price' => strip_tags( $_POST['menu-item-price'] )
+			'_restaurant_item_price' => floatval( strip_tags( $_POST['menu-item-price'] ) )
 		);
 
 		foreach ( $meta as $meta_key => $new_meta_value ) {

@@ -2,6 +2,7 @@
 
 /* Register custom post types on the 'init' hook. */
 add_action( 'init', 'restaurant_register_post_types' );
+add_filter( 'post_updated_messages', 'rp_post_updated_messages' );
 
 /**
  * Registers post types needed by the plugin.
@@ -27,7 +28,7 @@ function restaurant_register_post_types() {
 		'can_export'          => true,
 		'delete_with_user'    => false,
 		'hierarchical'        => false,
-		'has_archive'         => 'menu',
+		'has_archive'         => rp_restaurant_menu_base() . '/items',
 		'query_var'           => 'restaurant_item',
 		'capability_type'     => 'restaurant_item',
 		'map_meta_cap'        => true,
@@ -59,7 +60,7 @@ function restaurant_register_post_types() {
 		),
 
 		'rewrite' => array(
-			'slug'       => 'menu/items',
+			'slug'       => rp_restaurant_menu_base() . '/items',
 			'with_front' => false,
 			'pages'      => true,
 			'feeds'      => true,
@@ -96,12 +97,37 @@ function restaurant_register_post_types() {
 			'not_found_in_trash' => __( 'No menu items found in trash', 'restaurant' ),
 
 			/* Custom archive label.  Must filter 'post_type_archive_title' to use. */
-			'archive_title'      => __( 'Menu',                         'restaurant' ),
+			'archive_title'      => __( 'Menu Items',                    'restaurant' ),
 		)
 	);
 
 	/* Register the post type. */
 	register_post_type( 'restaurant_item', $args );
+}
+
+/**
+ * @since  0.1.0
+ * @access public
+ * @return void
+ */
+function rp_post_updated_messages( $messages ) {
+	global $post, $post_ID;
+
+	$messages['restaurant_item'] = array(
+		 0 => '', // Unused. Messages start at index 1.
+		 1 => sprintf( __( 'Menu item updated. <a href="%s">View menu item</a>', 'restaurant' ), esc_url( get_permalink( $post_ID ) ) ),
+		 2 => '',
+		 3 => '',
+		 4 => __( 'Menu item updated.', 'restaurant' ),
+		 5 => isset( $_GET['revision'] ) ? sprintf( __( 'Menu item restored to revision from %s', 'restaurant' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+		 6 => sprintf( __( 'Menu item published. <a href="%s">View menu item</a>', 'restaurant' ), esc_url( get_permalink( $post_ID ) ) ),
+		 7 => __( 'Menu item saved.', 'restaurant' ),
+		 8 => sprintf( __( 'Menu item submitted. <a target="_blank" href="%s">Preview menu item</a>', 'restaurant' ), esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) ),
+		 9 => sprintf( __( 'Menu item scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview menu item</a>', 'restaurant' ), date_i18n( __( 'M j, Y @ G:i', 'restaurant' ), strtotime( $post->post_date ) ), esc_url( get_permalink( $post_ID ) ) ),
+		10 => sprintf( __( 'Menu item draft updated. <a target="_blank" href="%s">Preview menu item</a>', 'restaurant' ), esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) ),
+	);
+
+	return $messages;
 }
 
 ?>

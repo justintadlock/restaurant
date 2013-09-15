@@ -7,58 +7,74 @@
 final class RP_Restaurant_Admin {
 
 	/**
+	 * @since 0.1.0
+	 */
+	private static $instance;
+
+	/**
 	 * @since  0.1.0
 	 * @access public
 	 */
-	public static function setup() {
-		add_action( 'admin_menu', array( __CLASS__, 'admin_menu' ) );
+	public function __construct() {
+		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 	}
 
 	/**
 	 * @since  0.1.0
 	 * @access public
 	 */
-	public static function admin_menu() {
+	public function admin_menu() {
 
 		add_submenu_page( 
 			'edit.php?post_type=restaurant_item',
-			__( 'Reviews', 'restaurant' ),
-			__( 'Reviews', 'restaurant' ),
+			__( 'Menu Comments', 'restaurant' ),
+			__( 'Menu Comments', 'restaurant' ),
 			'manage_restaurant',
-			'edit-comments.php?comment_type=restaurant_review'
+			'edit-comments.php?post_type=restaurant_item'
 		);
 
-		add_filter( 'parent_file', array( __CLASS__, 'parent_file' ) );
+		add_filter( 'parent_file', array( $this, 'parent_file' ) );
 
 		/* Load post meta boxes on the post editing screen. */
-		add_action( 'load-post.php',     array( __CLASS__, 'load_post_meta_boxes' ) );
-		add_action( 'load-post-new.php', array( __CLASS__, 'load_post_meta_boxes' ) );
+		add_action( 'load-post.php',     array( $this, 'load_post_meta_boxes' ) );
+		add_action( 'load-post-new.php', array( $this, 'load_post_meta_boxes' ) );
 
 		/* Only run our customization on the 'edit.php' page in the admin. */
-		add_action( 'load-edit.php', array( __CLASS__, 'load_edit' ) );
+		add_action( 'load-edit.php', array( $this, 'load_edit' ) );
 
-		add_filter( 'manage_edit-restaurant_item_columns', array( __CLASS__, 'edit_restaurant_item_columns' ) );
-		add_action( 'manage_restaurant_item_posts_custom_column', array( __CLASS__, 'manage_restaurant_item_columns' ), 10, 2 );
+		add_action( 'load-edit-comments.php', array( $this, 'load_edit_comments' ) );
+
+		add_filter( 'manage_edit-restaurant_item_columns', array( $this, 'edit_restaurant_item_columns' ) );
+		add_action( 'manage_restaurant_item_posts_custom_column', array( $this, 'manage_restaurant_item_columns' ), 10, 2 );
 	}
 
 	/**
 	 * @since  0.1.0
 	 * @access public
 	 */
-	public static function parent_file( $parent_file ) {
+	public function load_edit_comments() {
+		add_action( 'pre_get_comments', array( $this, 'pre_get_comments' ) );
+	}
+
+	/**
+	 * @since  0.1.0
+	 * @access public
+	 */
+	public function parent_file( $parent_file ) {
 		global $self, $post_id;
 
-		$screen = get_current_screen();
+		$screen    = get_current_screen();
+		$post_type = isset( $_GET['post_type'] ) ? sanitize_key( $_GET['post_type'] ) : '';
 
-		if ( 'edit-comments' === $screen->base && isset( $_GET['comment_type'] ) && 'restaurant_review' === $_GET['comment_type'] ) {
+		if ( 'edit-comments' === $screen->base ) {
 
-			$parent_file = 'edit.php?post_type=restaurant_item';
-			$self        = 'edit-comments.php?comment_type=restaurant_review';
-		}
+			if ( 'restaurant_item' === $post_type || ( !empty( $post_id ) && 'restaurant_item' === get_post_type( $post_id ) ) ) {
 
-		elseif ( !empty( $post_id ) && 'restaurant_item' === get_post_type( $post_id ) ) {
-			$parent_file = 'edit.php?post_type=restaurant_item';
-			$self        = 'edit-comments.php?comment_type=restaurant_review';
+				$parent_file = 'edit.php?post_type=restaurant_item';
+				$self        = 'edit-comments.php?post_type=restaurant_item';
+
+				add_filter( 'comment_status_links', array( $this, 'comment_status_links' ) );
+			}
 		}
 
 		return $parent_file;
@@ -68,18 +84,57 @@ final class RP_Restaurant_Admin {
 	 * @since  0.1.0
 	 * @access public
 	 */
-	public static function load_edit() {
-		$screen = get_current_screen();
+	public function comment_status_links( $status_links ) {
 
-		if ( !empty( $screen->post_type ) && 'restaurant_item' === $screen->post_type )
-			add_filter( 'request', array( __CLASS__, 'request' ) );
+		$new_status_links = array();
+
+		foreach ( $status_links as $key => $value ) {
+
+			preg_match( '/<a\s[^>]*?href=[\'"](.+?)[\'"]/is', $value, $matches );
+
+			if ( !empty( $matches[1] ) )
+				$link = str_replace( $matches[1], add_query_arg( 'post_type', 'restaurant_item', $matches[1] ), $value );
+			else
+				$link = $value;
+
+			$new_status_links[ $key ] = $link;
+
+		}
+
+		return $new_status_links;
 	}
 
 	/**
 	 * @since  0.1.0
 	 * @access public
 	 */
-	public static function request( $vars ) {
+	public function pre_get_comments( $query ) {
+		global $post_id;
+
+		$screen    = get_current_screen();
+		$post_type = isset( $_REQUEST['post_type'] ) ? sanitize_key( $_REQUEST['post_type'] ) : '';
+
+		if ( ( 'restaurant_item' === $post_type ) || ( !empty( $post_id ) && 'restaurant_item' === get_post_type( $post_id ) ) ) {
+			$query->query_vars['post_type'] = 'restaurant_item';
+		}
+	}
+
+	/**
+	 * @since  0.1.0
+	 * @access public
+	 */
+	public function load_edit() {
+		$screen = get_current_screen();
+
+		if ( !empty( $screen->post_type ) && 'restaurant_item' === $screen->post_type )
+			add_filter( 'request', array( $this, 'request' ) );
+	}
+
+	/**
+	 * @since  0.1.0
+	 * @access public
+	 */
+	public function request( $vars ) {
 
 		if ( !isset( $vars['order'] ) && !isset( $vars['orderby'] ) ) {
 			$vars = array_merge(
@@ -98,7 +153,7 @@ final class RP_Restaurant_Admin {
 	 * @since  0.1.0
 	 * @access public
 	 */
-	public static function load_post_meta_boxes() {
+	public function load_post_meta_boxes() {
 		require_once( RESTAURANT_DIR . 'admin/meta-box-menu-item-price.php' );
 	}
 
@@ -106,7 +161,7 @@ final class RP_Restaurant_Admin {
 	 * @since  0.1.0
 	 * @access public
 	 */
-	public static function edit_restaurant_item_columns( $columns ) {
+	public function edit_restaurant_item_columns( $columns ) {
 
 		$columns['title']     = __( 'Menu Item', 'restaurant' );
 		$columns['price']     = __( 'Price', 'restaurant' );
@@ -118,8 +173,7 @@ final class RP_Restaurant_Admin {
 
 		unset( $columns['date'] );
 
-		if ( rp_supports_reviews() )
-			$columns['comments'] = $comments;
+		$columns['comments'] = $comments;
 
 
 		return $columns;
@@ -129,18 +183,15 @@ final class RP_Restaurant_Admin {
 	 * @since  0.1.0
 	 * @access public
 	 */
-	public static function manage_restaurant_item_columns( $column, $post_id ) {
+	public function manage_restaurant_item_columns( $column, $post_id ) {
 
 		switch( $column ) {
 
 			case 'price' :
 
-				$price = rp_get_menu_item_price( $post_id );
+				$price = rp_get_formatted_menu_item_price( $post_id );
 
-				if ( !empty( $price ) )
-					printf( __( '$%s', 'restaurant' ), $price );
-				else
-					_e( 'No price set.', 'restaurant' );
+				echo !empty( $price ) ? $price : '&mdash;';
 
 				break;
 
@@ -154,8 +205,20 @@ final class RP_Restaurant_Admin {
 				break;
 		}
 	}
+
+	/**
+	 * @since  0.1.0
+	 * @access public
+	 */
+	public static function get_instance() {
+
+		if ( !self::$instance )
+			self::$instance = new self;
+
+		return self::$instance;
+	}
 }
 
-RP_Restaurant_Admin::setup();
+RP_Restaurant_Admin::get_instance();
 
 ?>
