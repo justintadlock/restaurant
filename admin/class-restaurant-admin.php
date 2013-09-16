@@ -31,9 +31,6 @@ final class RP_Restaurant_Admin {
 	 */
 	public function __construct() {
 
-		/* Adds custom admin menus. */
-		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
-
 		/* Load post meta boxes on the post editing screen. */
 		add_action( 'load-post.php',     array( $this, 'load_post_meta_boxes' ) );
 		add_action( 'load-post-new.php', array( $this, 'load_post_meta_boxes' ) );
@@ -47,24 +44,6 @@ final class RP_Restaurant_Admin {
 	}
 
 	/**
-	 * Sets up custom admin menus.
-	 *
-	 * @since  0.1.0
-	 * @access public
-	 * @return void
-	 */
-	public function admin_menu() {
-
-		add_submenu_page( 
-			'edit.php?post_type=restaurant_item',
-			__( 'Menu Comments', 'restaurant' ),
-			__( 'Menu Comments', 'restaurant' ),
-			'manage_restaurant',
-			'edit-comments.php?post_type=restaurant_item'
-		);
-	}
-
-	/**
 	 * Adds a custom filter on 'request' when viewing the edit menu items screen in the admin.
 	 *
 	 * @since  0.1.0
@@ -74,8 +53,10 @@ final class RP_Restaurant_Admin {
 	public function load_edit() {
 		$screen = get_current_screen();
 
-		if ( !empty( $screen->post_type ) && 'restaurant_item' === $screen->post_type )
+		if ( !empty( $screen->post_type ) && 'restaurant_item' === $screen->post_type ) {
 			add_filter( 'request', array( $this, 'request' ) );
+			add_action( 'restrict_manage_posts', array( $this, 'tags_dropdown' ) );
+		}
 	}
 
 	/**
@@ -115,6 +96,30 @@ final class RP_Restaurant_Admin {
 	}
 
 	/**
+	 * Renders a restaurant tags dropdown on the "menu items" screen table nav.
+	 *
+	 * @since  0.1.0
+	 * @access public
+	 * @return void
+	 */
+	public function tags_dropdown() {
+
+		$tag   = isset( $_GET['restaurant_tag'] ) ? esc_attr( $_GET['restaurant_tag'] ) : '';
+		$terms = get_terms( 'restaurant_tag' );
+
+		if ( !empty( $terms ) ) {
+			echo '<select name="restaurant_tag" class="postform">';
+
+			echo '<option value="' . selected( '', $tag, false ) . '">' . __( 'View all tags', 'restaurant' ) . '</option>';
+
+			foreach ( $terms as $term )
+				printf( '<option value="%s"%s>%s (%s)</option>', esc_attr( $term->slug ), selected( $term->slug, $tag, false ), esc_html( $term->name ), esc_html( $term->count ) );
+
+			echo '</select>';
+		}
+	}
+
+	/**
 	 * Filters the columns on the "menu items" screen.
 	 *
 	 * @since  0.1.0
@@ -125,18 +130,22 @@ final class RP_Restaurant_Admin {
 	public function edit_restaurant_item_columns( $columns ) {
 
 		/* Add custom columns and overwrite the 'title' column. */
-		$columns['title']     = __( 'Menu Item', 'restaurant' );
-		$columns['price']     = __( 'Price', 'restaurant' );
-		$columns['thumbnail'] = '';
+		$columns['title']     = __( 'Menu Item',      'restaurant' );
+		$columns['price']     = __( 'Price',          'restaurant' );
+		$columns['thumbnail'] = __( 'Featured Image', 'restaurant' );
 
-		/* Get the 'comments' column value and unset it. */
+		/* Get the 'comments' and 'taxonomy-restaurant_tag' column values and unset them. */
 		$comments = $columns['comments'];
 		unset( $columns['comments'] );
+
+		$tags = $columns['taxonomy-restaurant_tag'];
+		unset( $columns['taxonomy-restaurant_tag'] );
 
 		/* Unset the 'date' column. */
 		unset( $columns['date'] );
 
-		/* Append the 'comments' column to the end. */
+		/* Append the 'taxonomy-restaurant_tag' and 'comments' columns to the end. */
+		$columns['taxonomy-restaurant_tag'] = $tags;
 		$columns['comments'] = $comments;
 
 		/* Return the columns. */
@@ -166,7 +175,10 @@ final class RP_Restaurant_Admin {
 
 			case 'thumbnail' :
 
-				the_post_thumbnail( 'restaurant-thumbnail' );
+				$thumb = get_the_post_thumbnail( $post_id, 'restaurant-thumbnail' );
+
+				echo !empty( $thumb ) ? $thumb : '&mdash;';
+
 				break;
 
 			/* Just break out of the switch statement for everything else. */

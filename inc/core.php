@@ -19,6 +19,23 @@ add_filter( 'post_type_archive_title', 'rp_post_type_archive_title' );
 add_action( 'init', 'rp_add_image_sizes' );
 
 /**
+ * Returns the default plugin settings.
+ *
+ * @since  0.1.0
+ * @access public
+ * @return array
+ */
+function rp_get_default_settings() {
+
+	$settings = array(
+		'restaurant_item_archive_title' => __( 'Menu',            'restaurant' ),
+		'restaurant_item_description'   => __( 'Delicious food.', 'restaurant' )
+	);
+
+	return $settings;
+}
+
+/**
  * Defines the base URL slug for the "menu" section of the Web site.
  *
  * @since  0.1.0

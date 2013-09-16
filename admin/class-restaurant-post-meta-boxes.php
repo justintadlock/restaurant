@@ -63,7 +63,7 @@ final class RP_Restaurant_Post_Meta_Boxes {
 		<p>
 			<label for="menu-item-price"><?php _e( 'Price', 'restaurant' ); ?></label>
 			<br />
-			<input type="text" name="menu-item-price" id="menu-item-price" value="<?php echo esc_attr( rp_get_menu_item_price( $object->ID ) ); ?>" />
+			<input type="text" class="widefat" name="menu-item-price" id="menu-item-price" value="<?php echo esc_attr( rp_get_menu_item_price( $object->ID ) ); ?>" />
 		</p>
 
 		<?php do_action( 'rp_item_details_meta_box', $object, $box );

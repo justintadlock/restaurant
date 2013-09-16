@@ -17,6 +17,9 @@ add_action( 'init', 'restaurant_register_post_types' );
 /* Filter post updated messages for custom post types. */
 add_filter( 'post_updated_messages', 'rp_post_updated_messages' );
 
+/* Filter the "enter title here" text. */
+add_filter( 'enter_title_here', 'rp_enter_title_here', 10, 2 );
+
 /**
  * Registers post types needed by the plugin.
  *
@@ -26,9 +29,12 @@ add_filter( 'post_updated_messages', 'rp_post_updated_messages' );
  */
 function restaurant_register_post_types() {
 
+	/* Get plugin settings. */
+	$settings = get_option( 'restaurant_settings', rp_get_default_settings() );
+
 	/* Set up the arguments for the post type. */
 	$args = array(
-		'description'         => __( 'Delicious food.', 'restaurant' ),
+		'description'         => $settings['restaurant_item_description'],
 		'public'              => true,
 		'publicly_queryable'  => true,
 		'exclude_from_search' => false,
@@ -105,12 +111,29 @@ function restaurant_register_post_types() {
 			'not_found_in_trash' => __( 'No menu items found in trash', 'restaurant' ),
 
 			/* Custom archive label.  Must filter 'post_type_archive_title' to use. */
-			'archive_title'      => __( 'Menu',                          'restaurant' ),
+			'archive_title'      => $settings['restaurant_item_archive_title'],
 		)
 	);
 
 	/* Register the post type. */
 	register_post_type( 'restaurant_item', $args );
+}
+
+/**
+ * Custom "enter title here" text.
+ *
+ * @since  0.1.0
+ * @access public
+ * @param  string  $title
+ * @param  object  $post
+ * @return string
+ */
+function rp_enter_title_here( $title, $post ) {
+
+	if ( 'restaurant_item' === $post->post_type )
+		$title = __( 'Enter menu item name', 'restaurant' );
+
+	return $title;
 }
 
 /**

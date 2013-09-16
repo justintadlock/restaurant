@@ -1,0 +1,41 @@
+/* Plugin settings page. */
+.restaurant_item_page_restaurant-settings .form-table th {
+	width: 20%;
+	font-weight: bold;
+	}
+.restaurant_item_page_restaurant-settings .metabox-holder .column-1 {
+	float: left;
+	width: 66%;
+	}
+.restaurant_item_page_restaurant-settings .metabox-holder .column-2 {
+	float: right;
+	width: 32%;
+	}
+.restaurant_item_page_restaurant-settings .hook-editor {
+	overflow: hidden;
+	}
+.restaurant_item_page_restaurant-settings p.submit {
+	clear: both;
+	}
+.restaurant_item_page_restaurant-settings .postbox .inside p, 
+.restaurant_item_page_restaurant-settings .postbox .inside li {
+	}
+.restaurant_item_page_restaurant-settings .postbox form {
+	line-height: 150%;	
+	}
+.restaurant_item_page_restaurant-settings div.inside ul {
+	margin-left: 20px;
+	}
+.restaurant_item_page_restaurant-settings div.inside ul li {
+	list-style: square;
+	line-height:16px;
+	}
+.restaurant_item_page_restaurant-settings div.inside .alignleft {
+	width: 45%;
+	float: left;
+	}
+.restaurant_item_page_restaurant-settings div.inside .alignright {
+	width: 45%;
+	float: right;
+	text-align: right;
+	}
