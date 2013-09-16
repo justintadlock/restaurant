@@ -120,7 +120,7 @@ final class RP_Restaurant_Settings {
 		$settings['restaurant_item_archive_title'] = strip_tags( $settings['restaurant_item_archive_title'] );
 
 		/* Kill evil scripts. */
-		if ( current_user_can( 'unfiltered_html' ) )
+		if ( !current_user_can( 'unfiltered_html' ) )
 			$settings['restaurant_item_archive_title'] = stripslashes( wp_filter_post_kses( addslashes( $settings['restaurant_item_archive_title'] ) ) );
 
 		/* Return the validated/sanitized settings. */
