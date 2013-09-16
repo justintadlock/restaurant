@@ -11,31 +11,13 @@
  * @return bool
  */
 function rp_is_restaurant() {
-	$is_restaurant_page = ( rp_is_menu_item() || rp_is_menu_tag() ) ? true : false;
+
+	if ( is_singular( 'restaurant_item' ) || is_post_type_archive( 'restaurant_item' ) || is_tax( 'restaurant_tag' ) )
+		$is_restaurant_page = true;
+	else
+		$is_restaurant_page = false;
 
 	return apply_filters( 'rp_is_restaurant', $is_restaurant_page );
-}
-
-/**
- * Conditional tag to check if we're viewing a single menu item page.
- *
- * @since  0.1.0
- * @access public
- * @return bool
- */
-function rp_is_menu_item() {
-	return is_singular( 'restaurant_item' );
-}
-
-/**
- * Conditional tag to see if we're viewing a restaurant tag page.
- *
- * @since  0.1.0
- * @access public
- * @return bool
- */
-function rp_is_menu_tag() {
-	return is_tax( 'restaurant_tag' );
 }
 
 /**
