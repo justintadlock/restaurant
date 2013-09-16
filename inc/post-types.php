@@ -99,7 +99,7 @@ function restaurant_register_post_types() {
 			'name'               => __( 'Menu Items',                   'restaurant' ),
 			'singular_name'      => __( 'Menu Item',                    'restaurant' ),
 			'menu_name'          => __( 'Restaurant',                   'restaurant' ),
-			'name_admin_bar'     => __( 'Menu Item',                    'restaurant' ),
+			'name_admin_bar'     => __( 'Restaurant Menu Item',         'restaurant' ),
 			'all_items'          => __( 'Menu Items',                   'restaurant' ),
 			'add_new'            => __( 'Add Menu Item',                'restaurant' ),
 			'add_new_item'       => __( 'Add New Menu Item',            'restaurant' ),
