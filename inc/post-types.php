@@ -97,7 +97,7 @@ function restaurant_register_post_types() {
 			'not_found_in_trash' => __( 'No menu items found in trash', 'restaurant' ),
 
 			/* Custom archive label.  Must filter 'post_type_archive_title' to use. */
-			'archive_title'      => __( 'Menu Items',                    'restaurant' ),
+			'archive_title'      => __( 'Menu',                          'restaurant' ),
 		)
 	);
 
