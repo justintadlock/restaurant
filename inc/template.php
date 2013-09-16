@@ -60,25 +60,33 @@ function rp_get_menu_item_price( $post_id = '' ) {
 	return $price;
 }
 
+/**
+ * Displays the formatted menu item price (i.e., with currency symbol.
+ *
+ * @since  0.1.0
+ * @access public
+ * @param  int     $post_id
+ * @return void
+ */
 function rp_formatted_menu_item_price( $post_id = '' ) {
 	echo rp_get_formatted_menu_item_price( $post_id );
 }
 
+/**
+ * Gets the formatted menu item price (i.e., with the currency symbol.
+ *
+ * @since  0.1.0
+ * @access public
+ * @param  int     $post_id
+ * @return string
+ */
 function rp_get_formatted_menu_item_price( $post_id = '' ) {
 	$price = rp_get_menu_item_price( $post_id );
 
-	if ( !empty( $price ) ) {
+	if ( !empty( $price ) )
 		return sprintf( __( '$%s', 'restaurant' ), number_format( $price, 2, '.', ',' ) );
-	}
 
 	return '';
 }
-
-
-
-
-
-
-
 
 ?>
