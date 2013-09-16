@@ -3,6 +3,9 @@
 /* Filter the post type archive title. */
 add_filter( 'post_type_archive_title', 'rp_post_type_archive_title' );
 
+/* Add custom image sizes (for menu listing in admin). */
+add_action( 'init', 'rp_add_image_sizes' );
+
 /**
  * Defines the base URL slug for the "menu" section of the Web site.
  *
