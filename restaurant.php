@@ -32,9 +32,6 @@ final class RP_Restaurant {
 		/* Load the admin files. */
 		add_action( 'plugins_loaded', array( $this, 'admin' ), 4 );
 
-		/* Add custom rewrite rules. */
-		add_action( 'init', array( $this, 'rewrite' ) );
-
 		/* Register activation hook. */
 		register_activation_hook( __FILE__, array( $this, 'activation' ) );
 	}
@@ -89,13 +86,6 @@ final class RP_Restaurant {
 
 		if ( is_admin() )
 			require_once( RESTAURANT_DIR . 'admin/admin.php' );
-	}
-
-	/**
-	 * @since  0.1.0
-	 */
-	public function rewrite() {
-		add_rewrite_rule( '^' . rp_restaurant_menu_base() . '$', 'index.php?' . rp_restaurant_menu_base(), 'top' );
 	}
 
 	/**

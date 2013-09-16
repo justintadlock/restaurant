@@ -11,24 +11,9 @@
  * @return bool
  */
 function rp_is_restaurant() {
-	$is_restaurant_page = ( rp_is_menu_home() || rp_is_menu_item() || rp_is_menu_tag() ) ? true : false;
+	$is_restaurant_page = ( rp_is_menu_item() || rp_is_menu_tag() ) ? true : false;
 
 	return apply_filters( 'rp_is_restaurant', $is_restaurant_page );
-}
-
-/**
- * Conditional tag to see if we're viewing the restaurant menu home page.
- *
- * @since  0.1.0
- * @access public
- * @return bool
- */
-function rp_is_menu_home() {
-	global $wp;
-
-	$base = rp_restaurant_menu_base();
-
-	return ( $base === $wp->request && $base === $wp->matched_query && '^' . $base . '$' === $wp->matched_rule ) ? true : false;
 }
 
 /**

@@ -28,7 +28,7 @@ function restaurant_register_post_types() {
 		'can_export'          => true,
 		'delete_with_user'    => false,
 		'hierarchical'        => false,
-		'has_archive'         => rp_restaurant_menu_base() . '/items',
+		'has_archive'         => rp_restaurant_menu_base(),
 		'query_var'           => 'restaurant_item',
 		'capability_type'     => 'restaurant_item',
 		'map_meta_cap'        => true,
