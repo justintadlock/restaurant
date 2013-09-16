@@ -71,14 +71,9 @@ function restaurant_register_post_types() {
 			'title',
 			'editor',
 			'excerpt',
-		//	'author',
 			'thumbnail',
 			'comments',
-		//	'trackbacks',
-		//	'custom-fields',
 			'revisions',
-		//	'page-attributes',
-		//	'post-formats',
 		),
 
 		'labels' => array(
