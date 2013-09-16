@@ -1,13 +1,24 @@
 <?php
 /**
- * @package Restaurant
+ * Handles custom post meta boxes for the 'restaurant_item' post type.
+ *
+ * @package    Restaurant
  * @subpackage Admin
+ * @since      0.1.0
+ * @author     Justin Tadlock <justin@justintadlock.com>
+ * @copyright  Copyright (c) 2013, Justin Tadlock
+ * @link       http://themehybrid.com/plugins/restaurant
+ * @license    http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
-final class RP_Post_Meta_Boxes {
+final class RP_Restaurant_Post_Meta_Boxes {
 
 	/**
-	 * @since 0.1.0
+	 * Sets up the needed actions for adding and saving the meta boxes.
+	 *
+	 * @since  0.1.0
+	 * @access public
+	 * @return void
 	 */
 	public static function setup() {
 
@@ -17,7 +28,11 @@ final class RP_Post_Meta_Boxes {
 	}
 
 	/**
-	 * @since 0.1.0
+	 * Adds the meta box.
+	 *
+	 * @since  0.1.0
+	 * @access public
+	 * @return void
 	 */
 	public static function add_meta_boxes() {
 
@@ -32,7 +47,14 @@ final class RP_Post_Meta_Boxes {
 	}
 
 	/**
-	 * @since 0.1.0
+	 * Displays the "menu item details" meta box.  Currently, this only holds a single text field for 
+	 * entering the menu item price.
+	 *
+	 * @since  0.1.0
+	 * @access public
+	 * @param  object  $object  Current post object.
+	 * @param  array   $box
+	 * @return void
 	 */
 	public static function details_meta_box( $object, $box ) { ?>
 
@@ -48,17 +70,19 @@ final class RP_Post_Meta_Boxes {
 	}
 
 	/**
-	 * @since 0.1.0
+	 * Saves the custom post meta for the menu item.
+	 *
+	 * @since  0.1.0
+	 * @access public
+	 * @param  int     $post_id
+	 * @param  object  $post
+	 * @return void
 	 */
 	public static function save_post( $post_id, $post ) {
 
 		/* Verify the nonce. */
 		if ( !isset( $_POST['restaurant_item_details_meta_nonce'] ) || !wp_verify_nonce( $_POST['restaurant_item_details_meta_nonce'], plugin_basename( __FILE__ ) ) )
 			return;
-
-		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
-		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) return;
-		if ( defined( 'DOING_CRON' ) && DOING_CRON ) return;
 
 		/* Get the post type object. */
 		$post_type = get_post_type_object( $post->post_type );
@@ -95,6 +119,6 @@ final class RP_Post_Meta_Boxes {
 	}
 }
 
-RP_Post_Meta_Boxes::setup();
+RP_Restaurant_Post_Meta_Boxes::setup();
 
 ?>
