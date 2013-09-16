@@ -13,11 +13,9 @@ Use this plugin as a base for the smallest restaurants.  Then, build add-on plug
 	* Post type: `restaurant_item` (individual menu items)
 	* Taxonomy: `restaurant_tag` (generic taxonomy)
 * Set up structure for menus:
-	* `/menus` - Home page (theme must have custom template named `restaurant-menu.php` for this).
-	* `/menus/items` - Menu items archive.
-	* `/menus/items/slug` - Single menu item
-	* `/menus/tags` - Page for listing tags (may or may not include this in first go).
-	* `/menus/tags/slug` - Tag archives.
+	* `/menus` - Menu items archive.
+	* `/menus/items/slug` - Single menu item.
+	* `/menus/tags/slug` - Single tag archive.
 
 ## Future goals
 
@@ -29,9 +27,6 @@ Use this plugin as a base for the smallest restaurants.  Then, build add-on plug
 ## Template tags
 
 * `rp_is_restaurant()` - Viewing any restaurant page?
-* `rp_is_menu_home()` - Viewing the menu root/home page?
-* `rp_is_menu_item()` - Viewing a single menu item?
-* `rp_is_menu_tag()` - Viewing a meal archive?
 * `rp_get_menu_item_price()` - Returns the price of a menu item.
 * `rp_menu_item_price()` - Echos the price.
 * `rp_get_formatted_menu_item_price()` - Returns the formatted (with dollar sign) menu item price (filterable for other currencies).
@@ -41,10 +36,9 @@ Use this plugin as a base for the smallest restaurants.  Then, build add-on plug
 
 * Need to add `add_theme_support( 'restaurant' )` in `functions.php`.
 * Templates needed:
-	* `restaurant-menu.php` - (treat as if it were a custom page template and do whatever you want).
 	* `archive-restaurant_item.php` - (menu item archive).
 	* `single-restaurant_item.php` - (single menu item view).
-	* `taxonomy-restaurant_tag.php` - (tag archives).
+	* `taxonomy-restaurant_tag.php` - (single tag archive).
 
 ## Plugins
 
