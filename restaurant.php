@@ -132,7 +132,7 @@ final class RP_Restaurant {
 	function admin() {
 
 		if ( is_admin() )
-			require_once( RESTAURANT_DIR . 'admin/admin.php' );
+			require_once( RESTAURANT_DIR . 'admin/class-restaurant-admin.php' );
 	}
 
 	/**
