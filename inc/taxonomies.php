@@ -1,4 +1,15 @@
 <?php
+/**
+ * File for registering custom taxonomies.
+ *
+ * @package    Restaurant
+ * @subpackage Includes
+ * @since      0.1.0
+ * @author     Justin Tadlock <justin@justintadlock.com>
+ * @copyright  Copyright (c) 2013, Justin Tadlock
+ * @link       http://themehybrid.com/plugins/restaurant
+ * @license    http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ */
 
 /* Register taxonomies on the 'init' hook. */
 add_action( 'init', 'restaurant_register_taxonomies' );

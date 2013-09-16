@@ -1,7 +1,20 @@
 <?php
+/**
+ * File for registering custom post types.
+ *
+ * @package    Restaurant
+ * @subpackage Includes
+ * @since      0.1.0
+ * @author     Justin Tadlock <justin@justintadlock.com>
+ * @copyright  Copyright (c) 2013, Justin Tadlock
+ * @link       http://themehybrid.com/plugins/restaurant
+ * @license    http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ */
 
 /* Register custom post types on the 'init' hook. */
 add_action( 'init', 'restaurant_register_post_types' );
+
+/* Filter post updated messages for custom post types. */
 add_filter( 'post_updated_messages', 'rp_post_updated_messages' );
 
 /**

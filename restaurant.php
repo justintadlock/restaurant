@@ -6,17 +6,55 @@
  * Version: 0.1.0-alpha-1
  * Author: Justin Tadlock
  * Author URI: http://justintadlock.com
+ *
+ * A plugin for setting up small restaurant sites.  This plugin was created as a simple base for theme 
+ * authors to build custom restaurant themes.  It also serves as a foundation for other plugins to 
+ * build from and add restaurant-related features.  This plugin merely handles a restaurant "menu".  In 
+ * particular, it creates a 'restaurant_item' post type and 'restaurant_tag' taxonomy.  Other plugins 
+ * should be created to extend the menu functionality.
+ *
+ * This program is free software; you can redistribute it and/or modify it under the terms of the GNU 
+ * General Public License as published by the Free Software Foundation; either version 2 of the License, 
+ * or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without 
+ * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ * You should have received a copy of the GNU General Public License along with this program; if not, write 
+ * to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+ *
+ * @package    Restaurant
+ * @version    0.1.0
+ * @author     Justin Tadlock <justin@justintadlock.com>
+ * @copyright  Copyright (c) 2013, Justin Tadlock
+ * @link       http://themehybrid.com/plugins/restaurant
+ * @license    http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
+/**
+ * Sets up and initializes the Restaurant plugin.
+ *
+ * @since  0.1.0
+ * @access public
+ * @return void
+ */
 final class RP_Restaurant {
 
 	/**
-	 * @since 0.1.0
+	 * Holds the instances of this class.
+	 *
+	 * @since  0.1.0
+	 * @access private
+	 * @var    object
 	 */
 	private static $instance;
 
 	/**
-	 * @since 0.1.0
+	 * Sets up needed actions/filters for the plugin to initialize.
+	 *
+	 * @since  0.1.0
+	 * @access public
+	 * @return void
 	 */
 	public function __construct() {
 
@@ -37,7 +75,11 @@ final class RP_Restaurant {
 	}
 
 	/**
-	 * @since 0.1.0
+	 * Defines constants for the plugin.
+	 *
+	 * @since  0.1.0
+	 * @access public
+	 * @return void
 	 */
 	function constants() {
 
@@ -55,14 +97,15 @@ final class RP_Restaurant {
 	}
 
 	/**
-	 * Include needed files.
+	 * Loads files from the '/inc' folder.
 	 *
-	 * @since 0.1.0
+	 * @since  0.1.0
+	 * @access public
+	 * @return void
 	 */
 	function includes() {
 
 		require_once( RESTAURANT_DIR . 'inc/core.php'       );
-		require_once( RESTAURANT_DIR . 'inc/default-filters.php' );
 		require_once( RESTAURANT_DIR . 'inc/post-types.php' );
 		require_once( RESTAURANT_DIR . 'inc/taxonomies.php' );
 		require_once( RESTAURANT_DIR . 'inc/template.php'   );
@@ -71,16 +114,20 @@ final class RP_Restaurant {
 	/**
 	 * Loads the translation files.
 	 *
-	 * @since 0.1.0
+	 * @since  0.1.0
+	 * @access public
+	 * @return void
 	 */
 	function i18n() {
 		load_plugin_textdomain( 'restaurant', false, 'restaurant/languages' );
 	}
 
 	/**
-	 * Loads the admin file.
+	 * Loads admin files.
 	 *
-	 * @since 0.1.0
+	 * @since  0.1.0
+	 * @access public
+	 * @return void
 	 */
 	function admin() {
 
@@ -89,7 +136,11 @@ final class RP_Restaurant {
 	}
 
 	/**
-	 * @since 0.1.0
+	 * On plugin activation, add custom capabilities to the 'administrator' role.
+	 *
+	 * @since  0.1.0
+	 * @access public
+	 * @return void
 	 */
 	function activation() {
 
@@ -103,7 +154,11 @@ final class RP_Restaurant {
 	}
 
 	/**
-	 * @since 0.1.0
+	 * Returns the instance.
+	 *
+	 * @since  0.1.0
+	 * @access public
+	 * @return object
 	 */
 	public static function get_instance() {
 

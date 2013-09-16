@@ -1,4 +1,16 @@
 <?php
+/**
+ * Core functions file for the plugin.  This file sets up default actions/filters and defines other functions 
+ * needed within the plugin.
+ *
+ * @package    Restaurant
+ * @subpackage Includes
+ * @since      0.1.0
+ * @author     Justin Tadlock <justin@justintadlock.com>
+ * @copyright  Copyright (c) 2013, Justin Tadlock
+ * @link       http://themehybrid.com/plugins/restaurant
+ * @license    http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ */
 
 /* Filter the post type archive title. */
 add_filter( 'post_type_archive_title', 'rp_post_type_archive_title' );
