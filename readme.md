@@ -44,3 +44,4 @@ Use this plugin as a base for the smallest restaurants.  Then, build add-on plug
 
 * When creating custom post types or taxonomies related to the restaurant menu, make sure to build with the `rp_restaurant_menu_base()` function, which defines the URL base for anything related to the menu.  So, a `course` taxonomy's rewrite slug should be `rp_restaurant_menu_base() . '/course'`.
 * Custom taxonomy and post type names should be prefixed with `restaurant_`.  So, `course` becomes `restaurant_course`.
+* Custom admin screens should go under the "Restaurant" menu item.  This should be a sub-menu page for `edit.php?post_type=restaurant_item`.
