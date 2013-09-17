@@ -54,8 +54,9 @@ final class RP_Restaurant_Admin {
 		$screen = get_current_screen();
 
 		if ( !empty( $screen->post_type ) && 'restaurant_item' === $screen->post_type ) {
-			add_filter( 'request', array( $this, 'request' ) );
+			add_filter( 'request',               array( $this, 'request'       ) );
 			add_action( 'restrict_manage_posts', array( $this, 'tags_dropdown' ) );
+			add_action( 'admin_head',            array( $this, 'print_styles'  ) );
 		}
 	}
 
@@ -124,29 +125,40 @@ final class RP_Restaurant_Admin {
 	 *
 	 * @since  0.1.0
 	 * @access public
-	 * @param  array  $columns
+	 * @param  array  $post_columns
 	 * @return array
 	 */
-	public function edit_restaurant_item_columns( $columns ) {
+	public function edit_restaurant_item_columns( $post_columns ) {
+
+		$screen     = get_current_screen();
+		$post_type  = $screen->post_type;
+		$columns    = array();
+		$taxonomies = array();
+
+		/* Adds the checkbox column. */
+		$columns['cb'] = '<input type="checkbox" />';
 
 		/* Add custom columns and overwrite the 'title' column. */
+		$columns['thumbnail'] = '';
 		$columns['title']     = __( 'Menu Item',      'restaurant' );
 		$columns['price']     = __( 'Price',          'restaurant' );
-		$columns['thumbnail'] = __( 'Featured Image', 'restaurant' );
 
-		/* Get the 'comments' and 'taxonomy-restaurant_tag' column values and unset them. */
-		$comments = $columns['comments'];
-		unset( $columns['comments'] );
+		/* Get taxonomies that should appear in the manage posts table. */
+		$taxonomies = get_object_taxonomies( $post_type, 'objects' );
+		$taxonomies = wp_filter_object_list( $taxonomies, array( 'show_admin_column' => true ), 'and', 'name' );
 
-		$tags = $columns['taxonomy-restaurant_tag'];
-		unset( $columns['taxonomy-restaurant_tag'] );
+		/* Allow devs to filter the taxonomy columns. */
+		$taxonomies = apply_filters( "manage_taxonomies_for_{$post_type}_columns", $taxonomies, $post_type );
+		$taxonomies = array_filter( $taxonomies, 'taxonomy_exists' );
 
-		/* Unset the 'date' column. */
-		unset( $columns['date'] );
+		/* Loop through each taxonomy and add it as a column. */
+		foreach ( $taxonomies as $taxonomy )
+			$columns[ 'taxonomy-' . $taxonomy ] = get_taxonomy( $taxonomy )->labels->name;
 
-		/* Append the 'taxonomy-restaurant_tag' and 'comments' columns to the end. */
-		$columns['taxonomy-restaurant_tag'] = $tags;
-		$columns['comments'] = $comments;
+		/* Add the comments column. */
+		$post_status = !empty( $_REQUEST['post_status'] ) ? $_REQUEST['post_status'] : 'all';
+		if ( post_type_supports( $post_type, 'comments' ) && !in_array( $post_status, array( 'pending', 'draft', 'future' ) ) )
+			$columns['comments'] = '<span class="vers"><div title="' . esc_attr__( 'Comments' ) . '" class="comment-grey-bubble"></div></span>';
 
 		/* Return the columns. */
 		return $columns;
@@ -186,6 +198,24 @@ final class RP_Restaurant_Admin {
 				break;
 		}
 	}
+
+	/**
+	 * Style adjustments for the manage menu items screen, particularly for adjusting the thumbnail 
+	 * column in the table to make sure it doesn't take up too much space.
+	 *
+	 * @since  0.1.0
+	 * @access public
+	 * @return void
+	 */
+	public function print_styles( ) { ?>
+		<style type="text/css">
+		.edit-php .wp-list-table td.thumbnail.column-thumbnail,
+		.edit-php .wp-list-table th.manage-column.column-thumbnail { 
+			text-align: center; 
+			width: 100px; 
+		}
+		</style>
+	<?php }
 
 	/**
 	 * Returns the instance.

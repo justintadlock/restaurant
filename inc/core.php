@@ -72,7 +72,7 @@ function rp_post_type_archive_title( $title ) {
  * @return void
  */
 function rp_add_image_sizes() {
-	add_image_size( 'restaurant-thumbnail', 50, 50, true );
+	add_image_size( 'restaurant-thumbnail', 100, 75, true );
 }
 
 ?>
