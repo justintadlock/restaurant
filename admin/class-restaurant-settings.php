@@ -95,16 +95,16 @@ final class RP_Restaurant_Settings {
 	function add_meta_boxes() {
 
 		/* Add the 'About' meta box. */
-		add_meta_box( 'restaurant-about', _x( 'About', 'meta box', 'restaurant' ), array( $this, 'meta_box_about' ), $this->settings_page, 'side', 'high' );
+		add_meta_box( 'restaurant-about', _x( 'About', 'meta box', 'restaurant' ), array( $this, 'meta_box_about' ), 'restaurant-settings', 'side', 'high' );
 
 		/* Add the 'Donate' meta box. */
-		add_meta_box( 'restaurant-donate', _x( 'Like this plugin?', 'meta box', 'restaurant' ), array( $this, 'meta_box_donate' ), $this->settings_page, 'side', 'default' );
+		add_meta_box( 'restaurant-donate', _x( 'Like this plugin?', 'meta box', 'restaurant' ), array( $this, 'meta_box_donate' ), 'restaurant-settings', 'side', 'default' );
 
 		/* Add the 'Support' meta box. */
-		add_meta_box( 'restaurant-support', _x( 'Support', 'meta box', 'restaurant' ), array( $this, 'meta_box_support' ), $this->settings_page, 'side', 'low' );
+		add_meta_box( 'restaurant-support', _x( 'Support', 'meta box', 'restaurant' ), array( $this, 'meta_box_support' ), 'restaurant-settings', 'side', 'low' );
 
 		/* Add the 'Menu Settings' meta box. */
-		add_meta_box( 'restaurant-menu', _x( 'Menu Settings', 'meta box', 'restaurant' ), array( $this, 'meta_box_menu' ), $this->settings_page, 'normal', 'high' );
+		add_meta_box( 'restaurant-menu', _x( 'Menu Settings', 'meta box', 'restaurant' ), array( $this, 'meta_box_menu' ), 'restaurant-settings', 'normal', 'high' );
 
 	}
 
@@ -138,8 +138,8 @@ final class RP_Restaurant_Settings {
 
 		$plugin_data = get_plugin_data( RESTAURANT_DIR . 'restaurant.php' );
 
-		do_action( 'add_meta_boxes',            $this->settings_page, $plugin_data );
-		do_action( 'add_meta_boxes_restaurant', $this->settings_page, $plugin_data );
+		do_action( 'add_meta_boxes',            'restaurant-settings', $plugin_data );
+		do_action( 'add_meta_boxes_restaurant', 'restaurant-settings', $plugin_data );
 
 		?>
 		<div class="wrap">
@@ -161,11 +161,11 @@ final class RP_Restaurant_Settings {
 					<div class="metabox-holder">
 
 						<div class="post-box-container column-1 normal">
-							<?php do_meta_boxes( $this->settings_page, 'normal', $plugin_data ); ?>
+							<?php do_meta_boxes( 'restaurant-settings', 'normal', $plugin_data ); ?>
 						</div><!-- .post-box-container -->
 
 						<div class="post-box-container column-2 side">
-							<?php do_meta_boxes( $this->settings_page, 'side', $plugin_data ); ?>
+							<?php do_meta_boxes( 'restaurant-settings', 'side', $plugin_data ); ?>
 						</div><!-- .post-box-container -->
 
 					</div><!-- metabox-holder -->
@@ -210,7 +210,7 @@ final class RP_Restaurant_Settings {
 		jQuery(document).ready( 
 			function() {
 				jQuery( '.if-js-closed' ).removeClass( 'if-js-closed' ).addClass( 'closed' );
-				postboxes.add_postbox_toggles( '<?php echo $this->settings_page; ?>' );
+				postboxes.add_postbox_toggles( 'restaurant-settings' );
 			}
 		);
 		</script>
