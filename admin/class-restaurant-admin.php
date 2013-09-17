@@ -39,8 +39,9 @@ final class RP_Restaurant_Admin {
 		add_action( 'load-edit.php', array( $this, 'load_edit' ) );
 
 		/* Modify the columns on the "menu items" screen. */
-		add_filter( 'manage_edit-restaurant_item_columns', array( $this, 'edit_restaurant_item_columns' ) );
-		add_action( 'manage_restaurant_item_posts_custom_column', array( $this, 'manage_restaurant_item_columns' ), 10, 2 );
+		add_filter( 'manage_edit-restaurant_item_columns',          array( $this, 'edit_restaurant_item_columns'            )        );
+		add_filter( 'manage_edit-restaurant_item_sortable_columns', array( $this, 'manage_restaurant_item_sortable_columns' )        );
+		add_action( 'manage_restaurant_item_posts_custom_column',   array( $this, 'manage_restaurant_item_columns'          ), 10, 2 );
 	}
 
 	/**
@@ -72,12 +73,25 @@ final class RP_Restaurant_Admin {
 	 */
 	public function request( $vars ) {
 
+		/* Default ordering alphabetically. */
 		if ( !isset( $vars['order'] ) && !isset( $vars['orderby'] ) ) {
 			$vars = array_merge(
 				$vars,
 				array(
 					'order'   => 'ASC',
 					'orderby' => 'title'
+				)
+			);
+		}
+
+		/* Ordering when the user chooses to sort by price. */
+		elseif ( isset( $vars['orderby'] ) && '_restaurant_item_price' === $vars['orderby'] ) {
+
+			$vars = array_merge(
+				$vars,
+				array(
+					'orderby'  => 'meta_value_num',
+					'meta_key' => '_restaurant_item_price'
 				)
 			);
 		}
@@ -161,6 +175,21 @@ final class RP_Restaurant_Admin {
 			$columns['comments'] = '<span class="vers"><div title="' . esc_attr__( 'Comments' ) . '" class="comment-grey-bubble"></div></span>';
 
 		/* Return the columns. */
+		return $columns;
+	}
+
+	/**
+	 * Adds the 'price' column to the array of sortable columns.
+	 *
+	 * @since  0.1.0
+	 * @access public
+	 * @param  array   $columns
+	 * @return array
+	 */
+	public function manage_restaurant_item_sortable_columns( $columns ) {
+
+		$columns['price'] = array( '_restaurant_item_price', true );
+
 		return $columns;
 	}
 
