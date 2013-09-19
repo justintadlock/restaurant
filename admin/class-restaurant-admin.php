@@ -150,7 +150,7 @@ final class RP_Restaurant_Admin {
 		$taxonomies = array();
 
 		/* Adds the checkbox column. */
-		$columns['cb'] = '<input type="checkbox" />';
+		$columns['cb'] = $post_columns['cb'];
 
 		/* Add custom columns and overwrite the 'title' column. */
 		$columns['thumbnail'] = '';
@@ -170,9 +170,8 @@ final class RP_Restaurant_Admin {
 			$columns[ 'taxonomy-' . $taxonomy ] = get_taxonomy( $taxonomy )->labels->name;
 
 		/* Add the comments column. */
-		$post_status = !empty( $_REQUEST['post_status'] ) ? $_REQUEST['post_status'] : 'all';
-		if ( post_type_supports( $post_type, 'comments' ) && !in_array( $post_status, array( 'pending', 'draft', 'future' ) ) )
-			$columns['comments'] = '<span class="vers"><div title="' . esc_attr__( 'Comments' ) . '" class="comment-grey-bubble"></div></span>';
+		if ( !empty( $post_columns['comments'] ) )
+			$columns['comments'] = $post_columns['comments'];
 
 		/* Return the columns. */
 		return $columns;
