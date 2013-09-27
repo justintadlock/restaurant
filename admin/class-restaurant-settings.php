@@ -53,8 +53,8 @@ final class RP_Restaurant_Settings {
 
 		$this->settings_page = add_submenu_page( 
 			'edit.php?post_type=restaurant_item',
-			__( 'Settings', 'restaurant' ),
-			__( 'Settings', 'restaurant' ),
+			__( 'Restaurant Settings', 'restaurant' ),
+			__( 'Settings',            'restaurant' ),
 			apply_filters( 'restaurant_settings_capability', 'manage_options' ),
 			'restaurant-settings',
 			array( $this, 'settings_page' )
