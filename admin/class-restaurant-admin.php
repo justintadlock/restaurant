@@ -242,6 +242,9 @@ final class RP_Restaurant_Admin {
 			text-align: center; 
 			width: 100px; 
 		}
+		.edit-php .actions select[name="m"] {
+			display: none;
+		}
 		</style>
 	<?php }
 
