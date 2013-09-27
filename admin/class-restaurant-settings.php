@@ -289,7 +289,7 @@ final class RP_Restaurant_Settings {
 		$settings = get_option( 'restaurant_settings', rp_get_default_settings() ); ?>
 
 		<p>
-			<?php printf( __( "Your restaurant's menu is locted at %s.", 'restaurant' ), '<a href="' . get_post_type_archive_link( 'restaurant_item' ) . '"><code>' . get_post_type_archive_link( 'restaurant_item' ) . '</code></a>' ); ?>
+			<?php printf( __( "Your restaurant's menu is located at %s.", 'restaurant' ), '<a href="' . get_post_type_archive_link( 'restaurant_item' ) . '"><code>' . get_post_type_archive_link( 'restaurant_item' ) . '</code></a>' ); ?>
 		</p>
 
 		</p>
