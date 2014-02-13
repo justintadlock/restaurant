@@ -84,6 +84,7 @@ function rp_get_formatted_menu_item_price( $post_id = '' ) {
 	$price = rp_get_menu_item_price( $post_id );
 
 	if ( !empty( $price ) )
+		/* Translators: The $ is for the currency symbol. The %s is the number. */
 		return sprintf( __( '$%s', 'restaurant' ), number_format( $price, 2, '.', ',' ) );
 
 	return '';
