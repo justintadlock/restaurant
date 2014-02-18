@@ -160,5 +160,3 @@ function rp_post_updated_messages( $messages ) {
 
 	return $messages;
 }
-
-?>

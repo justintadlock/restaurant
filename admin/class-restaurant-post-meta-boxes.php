@@ -120,5 +120,3 @@ final class RP_Restaurant_Post_Meta_Boxes {
 }
 
 RP_Restaurant_Post_Meta_Boxes::setup();
-
-?>

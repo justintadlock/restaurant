@@ -89,5 +89,3 @@ function rp_get_formatted_menu_item_price( $post_id = '' ) {
 
 	return '';
 }
-
-?>

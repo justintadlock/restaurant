@@ -70,5 +70,3 @@ function restaurant_register_taxonomies() {
 
 	register_taxonomy( 'restaurant_tag', array( 'restaurant_item' ), $tag_args );
 }
-
-?>

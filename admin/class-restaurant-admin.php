@@ -265,5 +265,3 @@ final class RP_Restaurant_Admin {
 }
 
 RP_Restaurant_Admin::get_instance();
-
-?>

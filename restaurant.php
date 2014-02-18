@@ -172,5 +172,3 @@ final class RP_Restaurant {
 }
 
 RP_Restaurant::get_instance();
-
-?>

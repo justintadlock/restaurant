@@ -74,5 +74,3 @@ function rp_post_type_archive_title( $title ) {
 function rp_add_image_sizes() {
 	add_image_size( 'restaurant-thumbnail', 100, 75, true );
 }
-
-?>
