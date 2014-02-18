@@ -1,21 +1,19 @@
 # Restaurant
 
-Let's hope this doesn't break. :)
-
 A plugin for creating various features for restaurant sites.  This plugin should be a simple base for restaurants. Don't think of it as a plugin for the fanciest restaurant in the world with 20 daily specials, 5-course meals, and every other thing under the sun.  Think Mom-and-Pop restaurants, cafes, small diners, and so on.
 
 Use this plugin as a base for the smallest restaurants.  Then, build add-on plugins to extend this for larger-scale restaurants.
 
-## Version 0.1.0 goals
+## Version 1.0.0 goals
 
 * Create a solid foundation to extend in the future.
 * Handle menus:
 	* Post type: `restaurant_item` (individual menu items)
 	* Taxonomy: `restaurant_tag` (generic taxonomy)
 * Set up structure for menus:
-	* `/menus` - Menu items archive.
-	* `/menus/items/slug` - Single menu item.
-	* `/menus/tags/slug` - Single tag archive.
+	* `/menu` - Menu items archive.
+	* `/menu/items/slug` - Single menu item.
+	* `/menu/tags/slug` - Single tag archive.
 
 ## Future goals
 
