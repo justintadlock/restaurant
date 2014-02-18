@@ -14,7 +14,7 @@
 /**
  * Conditional tag to decide if we're viewing a restaurant-related page.
  *
- * @since  0.1.0
+ * @since  1.0.0
  * @access public
  * @return bool
  */
@@ -31,7 +31,7 @@ function rp_is_restaurant() {
 /**
  * Displays the price of a menu item.
  *
- * @since  0.1.0
+ * @since  1.0.0
  * @access public
  * @param  int     $post_id
  * @return void
@@ -43,7 +43,7 @@ function rp_menu_item_price( $post_id = '' ) {
 /**
  * Returns the price of a menu item.
  *
- * @since  0.1.0
+ * @since  1.0.0
  * @access public
  * @param  int     $post_id
  * @return string
@@ -63,7 +63,7 @@ function rp_get_menu_item_price( $post_id = '' ) {
 /**
  * Displays the formatted menu item price (i.e., with currency symbol.
  *
- * @since  0.1.0
+ * @since  1.0.0
  * @access public
  * @param  int     $post_id
  * @return void
@@ -75,7 +75,7 @@ function rp_formatted_menu_item_price( $post_id = '' ) {
 /**
  * Gets the formatted menu item price (i.e., with the currency symbol.
  *
- * @since  0.1.0
+ * @since  1.0.0
  * @access public
  * @param  int     $post_id
  * @return string

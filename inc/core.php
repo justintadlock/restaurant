@@ -21,7 +21,7 @@ add_action( 'init', 'rp_add_image_sizes' );
 /**
  * Returns the default plugin settings.
  *
- * @since  0.1.0
+ * @since  1.0.0
  * @access public
  * @return array
  */
@@ -38,7 +38,7 @@ function rp_get_default_settings() {
 /**
  * Defines the base URL slug for the "menu" section of the Web site.
  *
- * @since  0.1.0
+ * @since  1.0.0
  * @access public
  * @return string
  */
@@ -49,7 +49,7 @@ function rp_restaurant_menu_base() {
 /**
  * Filters 'post_type_archive_title' to use our custom 'archive_title' label.
  *
- * @since  0.1.0
+ * @since  1.0.0
  * @access public
  * @param  string  $title
  * @return string
@@ -67,7 +67,7 @@ function rp_post_type_archive_title( $title ) {
 /**
  * Adds a custom image size for viewing in the admin edit posts screen.
  *
- * @since  0.1.0
+ * @since  1.0.0
  * @access public
  * @return void
  */

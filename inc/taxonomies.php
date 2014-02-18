@@ -17,7 +17,7 @@ add_action( 'init', 'restaurant_register_taxonomies' );
 /**
  * Register taxonomies for the plugin.
  *
- * @since  0.1.0
+ * @since  1.0.0
  * @access public
  * @return void.
  */

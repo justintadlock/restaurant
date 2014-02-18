@@ -2,8 +2,8 @@
 /**
  * Plugin Name: Restaurant
  * Plugin URI: https://github.com/justintadlock/restaurant
- * Description: Plugin for restaurants.
- * Version: 0.1.0-alpha-1
+ * Description: A base plugin for building restaurant Web sites. This plugin allows you to manage a basic food and beverage menu. The purpose of it is to handle small restaurant sites while allowing for extension plugins to add more complex features.
+ * Version: 1.0.0-beta-1
  * Author: Justin Tadlock
  * Author URI: http://justintadlock.com
  *
@@ -24,7 +24,7 @@
  * to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
  *
  * @package    Restaurant
- * @version    0.1.0
+ * @version    1.0.0
  * @author     Justin Tadlock <justin@justintadlock.com>
  * @copyright  Copyright (c) 2013, Justin Tadlock
  * @link       http://themehybrid.com/plugins/restaurant
@@ -34,7 +34,7 @@
 /**
  * Sets up and initializes the Restaurant plugin.
  *
- * @since  0.1.0
+ * @since  1.0.0
  * @access public
  * @return void
  */
@@ -43,7 +43,7 @@ final class RP_Restaurant {
 	/**
 	 * Holds the instances of this class.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access private
 	 * @var    object
 	 */
@@ -52,7 +52,7 @@ final class RP_Restaurant {
 	/**
 	 * Sets up needed actions/filters for the plugin to initialize.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access public
 	 * @return void
 	 */
@@ -77,7 +77,7 @@ final class RP_Restaurant {
 	/**
 	 * Defines constants for the plugin.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access public
 	 * @return void
 	 */
@@ -99,7 +99,7 @@ final class RP_Restaurant {
 	/**
 	 * Loads files from the '/inc' folder.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access public
 	 * @return void
 	 */
@@ -114,7 +114,7 @@ final class RP_Restaurant {
 	/**
 	 * Loads the translation files.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access public
 	 * @return void
 	 */
@@ -125,7 +125,7 @@ final class RP_Restaurant {
 	/**
 	 * Loads admin files.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access public
 	 * @return void
 	 */
@@ -140,7 +140,7 @@ final class RP_Restaurant {
 	/**
 	 * On plugin activation, add custom capabilities to the 'administrator' role.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access public
 	 * @return void
 	 */
@@ -158,7 +158,7 @@ final class RP_Restaurant {
 	/**
 	 * Returns the instance.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access public
 	 * @return object
 	 */

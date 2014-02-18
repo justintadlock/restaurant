@@ -16,7 +16,7 @@ final class RP_Restaurant_Settings {
 	/**
 	 * Holds the instances of this class.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access private
 	 * @var    object
 	 */
@@ -25,7 +25,7 @@ final class RP_Restaurant_Settings {
 	/**
 	 * Settings page name.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access public
 	 * @var    string
 	 */
@@ -34,7 +34,7 @@ final class RP_Restaurant_Settings {
 	/**
 	 * Holds an array the plugin settings.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access public
 	 * @var    array
 	 */
@@ -43,7 +43,7 @@ final class RP_Restaurant_Settings {
 	/**
 	 * Sets up the needed actions for adding and saving the meta boxes.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access public
 	 * @return void
 	 */
@@ -54,7 +54,7 @@ final class RP_Restaurant_Settings {
 	/**
 	 * Sets up custom admin menus.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access public
 	 * @return void
 	 */
@@ -86,7 +86,7 @@ final class RP_Restaurant_Settings {
 	/**
 	 * Registers the plugin settings.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access public
 	 * @return void
 	 */
@@ -123,7 +123,7 @@ final class RP_Restaurant_Settings {
 	/**
 	 * Validates the plugin settings.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access public
 	 * @return void
 	 */
@@ -142,7 +142,7 @@ final class RP_Restaurant_Settings {
 	/**
 	 * Displays the menu settings section.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access public
 	 * @return void
 	 */
@@ -156,7 +156,7 @@ final class RP_Restaurant_Settings {
 	/**
 	 * Displays the menu title field.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access public
 	 * @return void
 	 */
@@ -170,7 +170,7 @@ final class RP_Restaurant_Settings {
 	/**
 	 * Displays the menu description field.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access public
 	 * @return void
 	 */
@@ -185,7 +185,7 @@ final class RP_Restaurant_Settings {
 	/**
 	 * Renders the settings page.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access public
 	 * @return void
 	 */
@@ -209,7 +209,7 @@ final class RP_Restaurant_Settings {
 	/**
 	 * Returns the instance.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access public
 	 * @return object
 	 */

@@ -16,7 +16,7 @@ final class RP_Restaurant_Post_Meta_Boxes {
 	/**
 	 * Sets up the needed actions for adding and saving the meta boxes.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access public
 	 * @return void
 	 */
@@ -30,7 +30,7 @@ final class RP_Restaurant_Post_Meta_Boxes {
 	/**
 	 * Adds the meta box.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access public
 	 * @return void
 	 */
@@ -50,7 +50,7 @@ final class RP_Restaurant_Post_Meta_Boxes {
 	 * Displays the "menu item details" meta box.  Currently, this only holds a single text field for 
 	 * entering the menu item price.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access public
 	 * @param  object  $object  Current post object.
 	 * @param  array   $box
@@ -72,7 +72,7 @@ final class RP_Restaurant_Post_Meta_Boxes {
 	/**
 	 * Saves the custom post meta for the menu item.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access public
 	 * @param  int     $post_id
 	 * @param  object  $post

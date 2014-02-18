@@ -23,7 +23,7 @@ add_filter( 'enter_title_here', 'rp_enter_title_here', 10, 2 );
 /**
  * Registers post types needed by the plugin.
  *
- * @since  0.1.0
+ * @since  1.0.0
  * @access public
  * @return void
  */
@@ -122,7 +122,7 @@ function restaurant_register_post_types() {
 /**
  * Custom "enter title here" text.
  *
- * @since  0.1.0
+ * @since  1.0.0
  * @access public
  * @param  string  $title
  * @param  object  $post
@@ -137,7 +137,7 @@ function rp_enter_title_here( $title, $post ) {
 }
 
 /**
- * @since  0.1.0
+ * @since  1.0.0
  * @access public
  * @return void
  */

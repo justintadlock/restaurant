@@ -16,7 +16,7 @@ final class RP_Restaurant_Admin {
 	/**
 	 * Holds the instances of this class.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access private
 	 * @var    object
 	 */
@@ -25,7 +25,7 @@ final class RP_Restaurant_Admin {
 	/**
 	 * Sets up needed actions/filters for the admin to initialize.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access public
 	 * @return void
 	 */
@@ -47,7 +47,7 @@ final class RP_Restaurant_Admin {
 	/**
 	 * Adds a custom filter on 'request' when viewing the edit menu items screen in the admin.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access public
 	 * @return void
 	 */
@@ -66,7 +66,7 @@ final class RP_Restaurant_Admin {
 	 * viewing the "edit menu items" screen in the admin.  This is to order the menu items 
 	 * alphabetically.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access public
 	 * @param  array  $vars
 	 * @return array
@@ -102,7 +102,7 @@ final class RP_Restaurant_Admin {
 	/**
 	 * Loads custom meta boxes on the "add new menu item" and "edit menu item" screens.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access public
 	 * @return void
 	 */
@@ -113,7 +113,7 @@ final class RP_Restaurant_Admin {
 	/**
 	 * Renders a restaurant tags dropdown on the "menu items" screen table nav.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access public
 	 * @return void
 	 */
@@ -137,7 +137,7 @@ final class RP_Restaurant_Admin {
 	/**
 	 * Filters the columns on the "menu items" screen.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access public
 	 * @param  array  $post_columns
 	 * @return array
@@ -180,7 +180,7 @@ final class RP_Restaurant_Admin {
 	/**
 	 * Adds the 'price' column to the array of sortable columns.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access public
 	 * @param  array   $columns
 	 * @return array
@@ -195,7 +195,7 @@ final class RP_Restaurant_Admin {
 	/**
 	 * Add output for custom columns on the "menu items" screen.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access public
 	 * @param  string  $column
 	 * @param  int     $post_id
@@ -231,7 +231,7 @@ final class RP_Restaurant_Admin {
 	 * Style adjustments for the manage menu items screen, particularly for adjusting the thumbnail 
 	 * column in the table to make sure it doesn't take up too much space.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access public
 	 * @return void
 	 */
@@ -251,7 +251,7 @@ final class RP_Restaurant_Admin {
 	/**
 	 * Returns the instance.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @access public
 	 * @return object
 	 */
