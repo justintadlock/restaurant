@@ -3,7 +3,7 @@
  * Plugin Name: Restaurant
  * Plugin URI: http://themehybrid.com/plugins/restaurant
  * Description: A base plugin for building restaurant Web sites. This plugin allows you to manage a basic food and beverage menu. The purpose of it is to handle small restaurant sites while allowing for extension plugins to add more complex features.
- * Version: 1.0.0-beta-1
+ * Version: 1.0.0
  * Author: Justin Tadlock
  * Author URI: http://justintadlock.com
  * Text Domain: restuarant
