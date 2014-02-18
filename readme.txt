@@ -30,6 +30,9 @@ The purpose of the Restaurant plugin is to create a base for building restaurant
 
 == Screenshots ==
 
+1. Restaurant menu admin screen
+2. Ravintola theme using the plugin
+
 == Changelog ==
 
 ### Version 1.0.0
