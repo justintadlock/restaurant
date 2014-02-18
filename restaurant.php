@@ -6,6 +6,8 @@
  * Version: 1.0.0-beta-1
  * Author: Justin Tadlock
  * Author URI: http://justintadlock.com
+ * Text Domain: restuarant
+ * Domain Path: /languages
  *
  * A plugin for setting up small restaurant sites.  This plugin was created as a simple base for theme 
  * authors to build custom restaurant themes.  It also serves as a foundation for other plugins to 
