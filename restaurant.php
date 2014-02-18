@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Restaurant
- * Plugin URI: https://github.com/justintadlock/restaurant
+ * Plugin URI: http://themehybrid.com/plugins/restaurant
  * Description: A base plugin for building restaurant Web sites. This plugin allows you to manage a basic food and beverage menu. The purpose of it is to handle small restaurant sites while allowing for extension plugins to add more complex features.
  * Version: 1.0.0-beta-1
  * Author: Justin Tadlock
@@ -26,7 +26,7 @@
  * @package    Restaurant
  * @version    1.0.0
  * @author     Justin Tadlock <justin@justintadlock.com>
- * @copyright  Copyright (c) 2013, Justin Tadlock
+ * @copyright  Copyright (c) 2013 - 2014, Justin Tadlock
  * @link       http://themehybrid.com/plugins/restaurant
  * @license    http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
