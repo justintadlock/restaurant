@@ -5,7 +5,7 @@
  *
  * @package    Restaurant
  * @subpackage Includes
- * @since      0.1.0
+ * @since      1.0.0
  * @author     Justin Tadlock <justin@justintadlock.com>
  * @copyright  Copyright (c) 2013, Justin Tadlock
  * @link       http://themehybrid.com/plugins/restaurant

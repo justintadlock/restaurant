@@ -84,7 +84,7 @@ final class RP_Restaurant {
 	function constants() {
 
 		/* Set the version number of the plugin. */
-		define( 'RESTAURANT_VERSION', '0.1.0' );
+		define( 'RESTAURANT_VERSION', '1.0.0' );
 
 		/* Set the database version number of the plugin. */
 		define( 'RESTAURANT_DB_VERSION', 1 );
